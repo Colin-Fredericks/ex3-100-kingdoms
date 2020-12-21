@@ -1,5 +1,15 @@
-body {
+html {
   font-family: Verdana, sans-serif;
+}
+@media screen and (min-width: 320px) {
+  html {
+    font-size: 20pt;
+  }
+}
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 14pt;
+  }
 }
 
 h1 {
@@ -26,16 +36,36 @@ h1 {
 }
 
 .credits {
-  font-size: small;
+  font-size: 80%;
   padding: 6px;
 }
 
 #new_kingdom {
-  margin: 1%;
-  padding: 3px 6px 3px 6px;
-  background: #ddd;
+  background: #875da3;
+  color: white;
   font-size: large;
-  border-radius: 3px;
+
+  margin: 1em;
+  border: 3px outset #a75dc3;
+  border-radius: 2em;
+  padding: 0.5em 1em 0.5em 1em;
+
+  cursor: pointer;
+}
+
+#new_kingdom:active {
+  border: 3px inset pink;
+}
+
+@media screen and (min-width: 320px) {
+  #new_kingdom {
+    font-size: 20pt;
+  }
+}
+@media screen and (min-width: 1000px) {
+  #new_kingdom {
+    font-size: 14pt;
+  }
 }
 
 #current_kingdom {
@@ -61,5 +91,5 @@ h1 {
 
 #colinlinks p {
   margin: 0px;
-  font-size: small;
+  font-size: 80%;
 }
