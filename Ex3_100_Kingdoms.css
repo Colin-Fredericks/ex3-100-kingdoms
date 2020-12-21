@@ -1,0 +1,78 @@
+.hasborder {
+  border: 1px solid black;
+  background-color: #ddd;
+}
+
+.topborder {
+  border-top: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+input {
+  margin-right: 12px;
+}
+
+input[type='number'] {
+  width: 50px;
+}
+
+.leftheader {
+  width: 75px;
+}
+
+.dim {
+  color: #999;
+}
+
+.hiddencode {
+  display: none;
+  font-size: small;
+}
+
+body {
+  font-family: Verdana, sans-serif;
+}
+
+h1 {
+  color: #7092ac;
+  font-variant: small-caps;
+  margin: 0px 0px 8px 0px;
+}
+
+.titletopper {
+  margin: 0px;
+  padding: 0px;
+  color: #7092ac;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+th {
+  text-align: left;
+}
+
+#nameheader {
+  min-width: 16em;
+}
+#totemheader {
+  min-width: 14em;
+}
+#roleheader {
+  min-width: 11em;
+}
+
+.everyother {
+  background-color: #ddeeff;
+}
+
+#colinlinks {
+  padding: 6px;
+}
+
+#colinlinks p {
+  margin: 0px;
+  font-size: small;
+}
