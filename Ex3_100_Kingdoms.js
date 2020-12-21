@@ -112,12 +112,12 @@ let data = {
   ],
 
   blooded_type: [
-    'a Godblooded mortal',
-    'a Godblooded mortal',
-    'a Godblooded mortal',
-    'a Ghost-blooded mortal',
-    'a Moon-touched mortal',
-    'a Elemental-blooded mortal',
+    'a god-blooded mortal',
+    'a god-blooded mortal',
+    'a god-blooded mortal',
+    'a ghost-blooded mortal',
+    'a moon-touched mortal',
+    'an elemental-blooded mortal',
   ],
 
   ability: [
@@ -151,13 +151,13 @@ let data = {
   special_feature: [
     'its music',
     'its dance',
-    'beautiful artwork',
+    'its beautiful artwork',
     'its architecture',
     'its famous buildings',
     'its literature',
     'its stories',
     'its sports',
-    'its games',
+    'its fascinating games',
     'its manufactured goods',
     'its natural resources',
     'its natural beauty',
@@ -195,13 +195,27 @@ function parseSpecial(text) {
 let new_kingdom_button = document.getElementById('new_kingdom');
 let previous_kingdoms = document.getElementById('previous_kingdoms');
 new_kingdom.onclick = function () {
-  let current_kindgom = document.getElementById('current_kindgom');
-  previous_kingdoms.prepend(current_kindgom.cloneNode(true));
+  let current_kingdom = document.getElementById('current_kingdom');
+  let clone_kingdom = current_kingdom.cloneNode(true);
+  clone_kingdom.id = '';
+  clone_kingdom.className = 'old_kingdom';
+  previous_kingdoms.prepend(clone_kingdom);
   setAllEntries();
 };
 
 function randInt(a, b) {
   return Math.floor(Math.random() * (b - a + 1)) + a;
+}
+
+function randIcon(a, b) {
+  let i = randInt(a, b);
+  if (i < 10) {
+    return '00' + String(i);
+  }
+  if (i < 100) {
+    return '0' + String(i);
+  }
+  return String(i);
 }
 
 function callFromTable(table, depth = 0) {
@@ -210,7 +224,6 @@ function callFromTable(table, depth = 0) {
   info = info.replace(/\{.+?\}/g, '');
   let extra_text = '';
   let text = [];
-  console.log(options);
   if (options.destination !== false) {
     extra_text = callFromTable(options.destination).text;
   }
@@ -246,10 +259,27 @@ function setSpecialFeature() {
   feature_span.textContent = feature.text;
 }
 
+function setIcon() {
+  let icon = document.querySelector('#current_kingdom .kingdom_icon');
+  let color_rot = randInt(0, 359);
+  let right_bright = 50 + 10 * Math.sin((color_rot * 3.14159) / 180);
+  icon.style.width = '2.5em';
+  icon.setAttribute(
+    'src',
+    'icons/viscious-speed/abstract-' + randIcon(1, 121) + '.svg'
+  );
+
+  icon.style.filter =
+    'invert(30%) sepia(100%) hue-rotate(' +
+    color_rot +
+    'deg) brightness(150%) saturate(200%)';
+}
+
 function setAllEntries() {
   setGovtType();
   setLeaderType();
   setSpecialFeature();
+  setIcon();
 }
 
 setAllEntries();
