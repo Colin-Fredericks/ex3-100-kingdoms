@@ -33,7 +33,7 @@ let data = {
     'a partner of the Guild',
     'a friend of Three Forks',
     'an ally of Lookshy',
-    'a minion of a powerful {Table: exalt_type}',
+    'a minion of {Table: exalt_type}',
     'an accomplice of Vaneha',
     'a wealthy mortal',
     'a wealthy mortal',
@@ -222,8 +222,9 @@ function callFromTable(table, depth = 0) {
   let info = data[table][randInt(0, data[table].length - 1)];
   let options = parseSpecial(info);
   info = info.replace(/\{.+?\}/g, '');
-  let extra_text = '';
   let text = [];
+  let main_text = '';
+  let extra_text = '';
   if (options.destination !== false) {
     extra_text = callFromTable(options.destination).text;
   }
@@ -231,13 +232,21 @@ function callFromTable(table, depth = 0) {
     text[0] = info + (extra_text ? extra_text : '');
   } else if (options.roll_n == 2) {
     if (depth === 0) {
-      text[0] = 'both ' + callFromTable(table, depth + 1).text;
-      text[1] = 'and ' + callFromTable(table, depth + 1).text;
+      text[0] = callFromTable(table, depth + 1).text;
+      text[1] = callFromTable(table, depth + 1).text;
+      // Avoiding duplicates
+      if (text[0] === text[1]) {
+        delete text[1];
+      }
     } else {
       return { text: '' };
     }
   }
-  let main_text = text.join(', ');
+  if (text[1]) {
+    main_text = text[0] + ' and ' + text[1];
+  } else {
+    main_text = text[0];
+  }
   return { text: main_text };
 }
 
